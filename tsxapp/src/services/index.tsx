@@ -38,3 +38,11 @@ interface DeleteProduct {
 export const deleteProduct: DeleteProduct = (productId) => {
   return instanceAxios({ method: "DELETE", url: `/posts/${productId}` });
 };
+
+// EDIT
+interface EditProduct {
+  (productId: number, updatedProduct: Partial<InitialStateType>): AxiosPromise<Product>;
+}
+export const editProduct: EditProduct = (productId, updatedProduct) => {
+  return instanceAxios({ method: "PUT", url: `/posts/${productId}`, data: updatedProduct });
+};

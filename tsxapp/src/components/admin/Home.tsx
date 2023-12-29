@@ -7,7 +7,6 @@ import { useNavigate } from "react-router-dom";
 import { ROUTER } from "../../constant/Router";
 import { toast } from "react-toastify";
 
-
 const Home: React.FC = () => {
   const [data, setData] = useState<Product[]>();
   const navigate = useNavigate();
@@ -125,7 +124,12 @@ const Home: React.FC = () => {
                     </button>
                   </td>
                   <td className="px-6 py-4">
-                    <button className="px-5 py-1 bg-blue-700 rounded-sm hover:opacity-75 transition-all duration-500">
+                    <button
+                      className="px-5 py-1 bg-blue-700 rounded-sm hover:opacity-75 transition-all duration-500"
+                      onClick={() =>
+                        navigate(`${ROUTER.UpdateItem}/${product.id}`)
+                      }
+                    >
                       <FaPen size={20} />
                     </button>
                     <button

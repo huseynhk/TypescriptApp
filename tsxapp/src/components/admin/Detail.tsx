@@ -2,7 +2,7 @@ import { getSingleProduct } from "../../services/index";
 import React, { useState, useEffect } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import { ROUTER } from "../../constant/Router";
-import {  FaCircleChevronLeft } from "react-icons/fa6";
+import { FaCircleChevronLeft } from "react-icons/fa6";
 import { Product } from "../../interfaces/data";
 
 const Detail: React.FC = () => {
