@@ -8,6 +8,8 @@ export interface Product {
   stock: number;
   category: string;
   image: string;
+  create_at: number;
+  color: string;
 }
 
-export interface InitialStateType extends Omit<Product, 'id'> {}
+export interface InitialStateType extends Omit<Product, "id"> {}

@@ -8,7 +8,9 @@ import NotFound from "./components/pages/NotFound";
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 
+
 function App(): JSX.Element {
+
   return (
     <>
       <Routes>
