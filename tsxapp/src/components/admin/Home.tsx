@@ -28,10 +28,6 @@ const Home: React.FC = () => {
     return <p className="m-20 text-red-300 text-xl ">Loading...</p>;
   }
 
-  if (error) {
-    return <p className="m-20 text-red-300 text-xl ">Error: {error}</p>;
-  }
-
   return (
     <Layout>
       <div className="container py-10">
@@ -81,69 +77,74 @@ const Home: React.FC = () => {
               </tr>
             </thead>
             <tbody className="mt-4 w-full min-w-max table-auto text-left">
-              {datas && datas.length > 0 ? (
-                datas.map((product, index) => (
-                  <tr
-                    key={product.id}
-                    className="bg-white border-b dark:bg-gray-800 dark:border-gray-700"
-                  >
-                    <td className="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
-                      {index + 1}
-                    </td>
-                    <td className="px-6 py-4">{product.title}</td>
-                    <td className="px-6 py-4">${product.price}</td>
-                    <td className="px-6 py-4">${product.discountPrice}</td>
-                    <td className="px-6 py-4">{product.rating}</td>
-                    <td className="px-6 py-4">{product.stock}</td>
-                    <td className="px-6 py-4">{product.category}</td>
-                    <td className="px-6 py-4">
-                      <div
-                        className="h-10 w-10 rounded-full cursor-pointer "
-                        style={{ backgroundColor: product.color }}
-                        onClick={() => copyColorCode(product.color)}
-                      ></div>
-                    </td>
-                    <td className="p-3">
-                      <img
-                        className="h-12 w-20 object-cover rounded-sm"
-                        src={product.image}
-                        alt={product.title}
-                      />
-                    </td>
-                    <td className="px-3 py-4 ">
-                      {moment(product?.create_at).fromNow()}
-                    </td>
-                    <td className="px-6 py-4">
-                      <button
-                        className="text-cyan-700   hover:opacity-60 duration-500"
-                        onClick={() =>
-                          navigate(`${ROUTER.Detail}/${product.id}`)
-                        }
-                      >
-                        <FaCircleChevronRight size={45} />
-                      </button>
-                    </td>
-                    <td className="px-6 py-4">
-                      <button
-                        className="px-5 py-1 bg-blue-700 rounded-sm hover:opacity-75 transition-all duration-500"
-                        onClick={() =>
-                          navigate(`${ROUTER.UpdateItem}/${product.id}`)
-                        }
-                      >
-                        <FaPen size={20} />
-                      </button>
-                      <button
-                        className="px-5 py-1 bg-red-700 rounded-sm mt-2 hover:opacity-75 transition-all duration-500"
-                        onClick={() => removeProduct(product.id)}
-                      >
-                        <FaRegTrashCan size={20} />
-                      </button>
-                    </td>
-                  </tr>
-                ))
-              ) : (
-                <p>No products available.</p>
+              {error && (
+                <p className="m-20 text-red-300 text-2xl ">
+                  Fetching Data: {error}
+                </p>
               )}
+              {datas && datas.length > 0
+                ? datas.map((product, index) => (
+                    <tr
+                      key={product.id}
+                      className="bg-white border-b dark:bg-gray-800 dark:border-gray-700"
+                    >
+                      <td className="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
+                        {index + 1}
+                      </td>
+                      <td className="px-6 py-4">{product.title}</td>
+                      <td className="px-6 py-4">${product.price}</td>
+                      <td className="px-6 py-4">${product.discountPrice}</td>
+                      <td className="px-6 py-4">{product.rating}</td>
+                      <td className="px-6 py-4">{product.stock}</td>
+                      <td className="px-6 py-4">{product.category}</td>
+                      <td className="px-6 py-4">
+                        <div
+                          className="h-10 w-10 rounded-full cursor-pointer "
+                          style={{ backgroundColor: product.color }}
+                          onClick={() => copyColorCode(product.color)}
+                        ></div>
+                      </td>
+                      <td className="p-3">
+                        <img
+                          className="h-12 w-20 object-cover rounded-sm"
+                          src={product.image}
+                          alt={product.title}
+                        />
+                      </td>
+                      <td className="px-3 py-4 ">
+                        {moment(product?.create_at).fromNow()}
+                      </td>
+                      <td className="px-6 py-4">
+                        <button
+                          className="text-cyan-700   hover:opacity-60 duration-500"
+                          onClick={() =>
+                            navigate(`${ROUTER.Detail}/${product.id}`)
+                          }
+                        >
+                          <FaCircleChevronRight size={45} />
+                        </button>
+                      </td>
+                      <td className="px-6 py-4">
+                        <button
+                          className="px-5 py-1 bg-blue-700 rounded-sm hover:opacity-75 transition-all duration-500"
+                          onClick={() =>
+                            navigate(`${ROUTER.UpdateItem}/${product.id}`)
+                          }
+                        >
+                          <FaPen size={20} />
+                        </button>
+                        <button
+                          className="px-5 py-1 bg-red-700 rounded-sm mt-2 hover:opacity-75 transition-all duration-500"
+                          onClick={() => removeProduct(product.id)}
+                        >
+                          <FaRegTrashCan size={20} />
+                        </button>
+                      </td>
+                    </tr>
+                  ))
+                : loading && (
+                    <p className="m-20 text-red-300 text-2xl ">Loading...</p>
+                  )}
             </tbody>
           </table>
         </div>

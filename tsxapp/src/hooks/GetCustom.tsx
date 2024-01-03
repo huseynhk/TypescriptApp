@@ -10,7 +10,10 @@ const useFetchProducts = () => {
   const fetchProducts = async () => {
     try {
       const response = await getProducts();
-      setDatas(response.data);
+      const filteredData = response.data.filter(
+        (product: Product) => product.id > 100
+      );
+      setDatas(filteredData);
     } catch (error) {
       setError("Error");
     } finally {

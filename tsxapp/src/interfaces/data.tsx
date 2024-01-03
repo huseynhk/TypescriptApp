@@ -38,6 +38,16 @@ interface ProductParams {
   discountPrice: number;
 }
 
+export interface RouterTypes {
+  Home: string;
+  AddItem: string;
+  UpdateItem: string;
+  Detail: string;
+  Product: string;
+  Basket: string;
+  ProductDetail: string;
+}
+
 export interface GetProducts {
   (params?: Required<ProductParams> | undefined): AxiosPromise<Product[]>;
 }

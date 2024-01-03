@@ -1,14 +1,6 @@
-type RouterType = {
-  Home: string;
-  AddItem: string;
-  UpdateItem: string;
-  Detail: string;
-  Product: string;
-  Basket: string;
-  ProductDetail: string;
-};
+import { RouterTypes } from "../interfaces/data";
 
-export const ROUTER: RouterType = {
+export const ROUTER: RouterTypes = {
   Home: "/",
   AddItem: "/add",
   UpdateItem: "/update",

@@ -24,8 +24,10 @@ const Detail: React.FC = () => {
   }
 
   return (
-    <section className=" py-20">
-      {product ? (
+    <section className="py-10">
+      <h1 className="text-center text-4xl text-cyan-300 mb-8">Detail Page</h1>
+
+      {product && (
         <div className="max-w-md border-cyan-400 border-2 rounded-xl  lg:max-w-3xl lg:flex font-poppins  shadow-xl shadow-cyan-950 bg-gray-900  mx-auto">
           <img
             className="w-full lg:w-1/2 lg:h-[555px]  object-cover"
@@ -67,10 +69,6 @@ const Detail: React.FC = () => {
               </span>
             </button>
           </div>
-        </div>
-      ) : (
-        <div className="bg-black h-[450px] w-full">
-          <h1 className="text-gega-red text-4xl capitalize">not found</h1>
         </div>
       )}
     </section>

@@ -11,7 +11,7 @@ import {
   getTotalPrice,
   getTotalDiscount,
 } from "../../features/slices/productSlice";
-
+import { copyColorCode } from "../../utils/CopyColor";
 import Layout from "../layout/Layout";
 
 const Basket: React.FC = () => {
@@ -81,10 +81,11 @@ const Basket: React.FC = () => {
                         </p>
                       </div>
                     </div>
-                    <div className="flex flex-col  items-center justify-center">
+                    <div className="flex flex-col  items-center justify-center cursor-pointer ">
                       <div
                         className="h-8 w-20 rounded"
                         style={{ backgroundColor: product.color }}
+                        onClick={() => copyColorCode(product.color)}
                       ></div>
 
                       <div className="my-4 flex items-center">
