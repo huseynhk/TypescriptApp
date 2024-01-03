@@ -1,48 +1,42 @@
-import { AxiosPromise } from "axios";
+import { ENDPOINTS } from "../constant/EndPoints";
 import { instanceAxios } from "../helper/instanceAxios";
-import { Product, InitialStateType } from "../interfaces/data";
+import {
+  GetProducts,
+  GetSingleProduct,
+  AddProduct,
+  DeleteProduct,
+  EditProduct,
+} from "../interfaces/data";
 
-interface ProductParams {
-  category: string;
-  discountPrice?: number;
-}
-
-// GET
-interface GetProducts {
-  (params?: Partial<ProductParams> | undefined): AxiosPromise<Product[]>;
-}
+// GET All
 export const getProducts: GetProducts = (params) => {
-  return instanceAxios({ method: "GET", url: "/posts", params });
+  return instanceAxios({ method: "GET", url: ENDPOINTS.POSTS, params });
 };
 
 // GET Single
-interface GetSingleProduct {
-  (productId: number): AxiosPromise<Product>;
-}
 export const getSingleProduct: GetSingleProduct = (productId) => {
-  return instanceAxios({ method: "GET", url: `/posts/${productId}` });
+  return instanceAxios({ method: "GET", url: ENDPOINTS.POST_ID(productId) });
 };
 
 // ADD
-interface AddProduct {
-  (newProduct: InitialStateType): AxiosPromise<Product>;
-}
 export const addProduct: AddProduct = (newProduct) => {
-  return instanceAxios({ method: "POST", url: "/posts", data: newProduct });
-};
-
-// DELETE
-interface DeleteProduct {
-  (productId: number): AxiosPromise<void>;
-}
-export const deleteProduct: DeleteProduct = (productId) => {
-  return instanceAxios({ method: "DELETE", url: `/posts/${productId}` });
+  return instanceAxios({
+    method: "POST",
+    url: ENDPOINTS.POSTS,
+    data: newProduct,
+  });
 };
 
 // EDIT
-interface EditProduct {
-  (productId: number, updatedProduct: Partial<InitialStateType>): AxiosPromise<Product>;
-}
 export const editProduct: EditProduct = (productId, updatedProduct) => {
-  return instanceAxios({ method: "PUT", url: `/posts/${productId}`, data: updatedProduct });
+  return instanceAxios({
+    method: "PUT",
+    url: ENDPOINTS.POST_ID(productId),
+    data: updatedProduct,
+  });
+};
+
+// DELETE
+export const deleteProduct: DeleteProduct = (productId) => {
+  return instanceAxios({ method: "DELETE", url: ENDPOINTS.POST_ID(productId) });
 };

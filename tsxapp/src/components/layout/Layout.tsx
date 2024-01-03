@@ -1,8 +1,13 @@
+import NavBar from "./NavBar";
+import { LayoutProps } from "../../interfaces/data";
 
-const Layout = () => {
+const Layout = ({ children }: LayoutProps) => {
   return (
-    <div>Layout</div>
-  )
-}
+    <>
+      <NavBar />
+      <div className="font-poppins">{children}</div>
+    </>
+  );
+};
 
-export default Layout
+export default Layout;

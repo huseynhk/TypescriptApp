@@ -1,11 +1,12 @@
 import React, { useState, useEffect } from "react";
-import { getSingleProduct, editProduct } from "../../services/index";
+import { editProduct } from "../../services/index";
 import { useNavigate, useParams } from "react-router-dom";
 import { ROUTER } from "../../constant/Router";
 import { InitialStateType } from "../../interfaces/data";
-import moment from "moment";
 import { toast } from "react-toastify";
 import { ColorResult, SketchPicker } from "react-color";
+import useFetchSingleProduct from "../../hooks/GetSingle";
+import moment from "moment";
 
 const createDate = moment().valueOf();
 const initialState: InitialStateType = {
@@ -25,15 +26,7 @@ const UpdateItem: React.FC = () => {
   const { id } = useParams();
   const navigate = useNavigate();
   const [newProduct, setNewProduct] = useState<InitialStateType>(initialState);
-
-  const fetchSingleProduct = async () => {
-    try {
-      const response = await getSingleProduct(Number(id));
-      setNewProduct(response.data);
-    } catch (error) {
-      console.error("Error fetching single product:", error);
-    }
-  };
+  const { product, loading, error } = useFetchSingleProduct(Number(id));
 
   const editSingleProduct = async () => {
     try {
@@ -52,15 +45,26 @@ const UpdateItem: React.FC = () => {
 
   const handleInputChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     const { name, value } = event.target;
+    const numericValue = isNaN(Number(value)) ? value : Number(value);
     setNewProduct((prevProduct) => ({
       ...prevProduct,
-      [name]: value,
+      [name]: numericValue,
     }));
   };
 
   useEffect(() => {
-    fetchSingleProduct();
-  }, [id]);
+    if (product) {
+      setNewProduct(product);
+    }
+  }, [product]);
+
+  if (loading) {
+    return <p className="m-20 text-red-300 text-xl ">Loading...</p>;
+  }
+
+  if (error) {
+    return <p className="m-20 text-red-300 text-xl ">Error: {error}</p>;
+  }
 
   return (
     <>

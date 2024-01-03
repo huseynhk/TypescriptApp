@@ -5,10 +5,9 @@ import { FaCircleChevronLeft } from "react-icons/fa6";
 import { copyColorCode } from "../../utils/CopyColor";
 import useFetchSingleProduct from "../../hooks/GetSingle";
 
-const Detail: React.FC = () => {
+const ProductDetail: React.FC = () => {
   const { id } = useParams();
   const navigate = useNavigate();
-
   const { product, loading, error } = useFetchSingleProduct(Number(id));
 
   if (loading) {
@@ -46,7 +45,7 @@ const Detail: React.FC = () => {
             </p>
 
             <div
-              className="h-10 w-20 rounded-md cursor-pointer"
+              className="h-10 w-20 rounded-md cursor-pointer "
               style={{ backgroundColor: product.color }}
               onClick={() => copyColorCode(product.color)}
             ></div>
@@ -55,7 +54,7 @@ const Detail: React.FC = () => {
               desc: {product.description.slice(0, 20)}...
             </p>
             <button
-              onClick={() => navigate(ROUTER.Home)}
+              onClick={() => navigate(ROUTER.Product)}
               className="flex items-center justify-center mt-2 mb-3 lg:mb-3 "
             >
               <FaCircleChevronLeft
@@ -77,4 +76,4 @@ const Detail: React.FC = () => {
   );
 };
 
-export default Detail;
+export default ProductDetail;

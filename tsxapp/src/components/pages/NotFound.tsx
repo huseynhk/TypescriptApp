@@ -1,8 +1,5 @@
+const NotFound: React.FC = () => {
+  return <div className="Disney bg-gray-500"></div>;
+};
 
-const NotFound = () => {
-  return (
-    <div>NotFound</div>
-  )
-}
-
-export default NotFound
+export default NotFound;
