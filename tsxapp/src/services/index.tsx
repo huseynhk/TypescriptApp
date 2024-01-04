@@ -4,8 +4,8 @@ import {
   GetProducts,
   GetSingleProduct,
   AddProduct,
-  DeleteProduct,
   EditProduct,
+  DeleteProduct,
 } from "../interfaces/data";
 
 // GET All

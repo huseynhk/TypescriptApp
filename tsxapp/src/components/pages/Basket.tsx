@@ -23,7 +23,7 @@ const Basket: React.FC = () => {
   return (
     <>
       <Layout>
-      <header className="w-full  font-extrabold text-lg flex justify-center items-center bg-slate-700 p-2">
+        <header className="w-full  font-extrabold text-lg flex justify-center items-center bg-slate-700 p-2">
           <div>
             <p className="text-cyan-100">TotalPrice: {totalPrice}</p>
             <p className="text-cyan-100 my-2">TotalDiscount: {totalDiscount}</p>
@@ -38,8 +38,6 @@ const Basket: React.FC = () => {
             </button>
           </div>
         </header>
-
-
 
         <div className="container  grid gap-12 grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-3 p-14 ">
           {basket && basket.length > 0 ? (
@@ -122,8 +120,6 @@ const Basket: React.FC = () => {
             <h1 className="text-red-200 text-5xl">Empty</h1>
           )}
         </div>
-
-      
       </Layout>
     </>
   );

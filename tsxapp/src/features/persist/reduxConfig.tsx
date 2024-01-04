@@ -1,6 +1,6 @@
 import { configureStore } from "@reduxjs/toolkit";
-import rootReducer from "../app/rootReducer";
 import { persistStore, persistReducer } from "redux-persist";
+import rootReducer from "../app/rootReducer";
 import storage from "redux-persist/lib/storage";
 
 const persistConfig = {
@@ -15,5 +15,4 @@ const store = configureStore({
   devTools: true,
 });
 const persistor = persistStore(store);
-
 export { store, persistor };

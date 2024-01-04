@@ -12,15 +12,15 @@ const Detail: React.FC = () => {
   const { product, loading, error } = useFetchSingleProduct(Number(id));
 
   if (loading) {
-    return <p className="m-20 text-red-300 text-xl ">Loading...</p>;
+    return <p className="m-20 text-red-300 text-2xl ">Loading...</p>;
   }
 
   if (error) {
-    return <p className="m-20 text-red-300 text-xl ">Error: {error}</p>;
+    return <p className="m-20 text-red-300 text-2xl ">Error: {error}</p>;
   }
 
   if (!product) {
-    return <p className="m-20 text-red-300 text-xl ">No product found.</p>;
+    return <p className="m-20 text-red-300 text-2xl ">No product found.</p>;
   }
 
   return (
